@@ -1,0 +1,20 @@
+﻿@{
+    ViewData["Title"] = "Home";
+}
+
+<div class="text-center mt-5">
+    <h1 class="display-4"> BookStore Management System</h1>
+    <p class="lead">Manage your Authors and Books easily</p>
+
+    <hr />
+
+    <div class="mt-4">
+        <a class="btn btn-primary btn-lg m-2" asp-controller="Authors" asp-action="Index">
+            Manage Authors
+        </a>
+
+        <a class="btn btn-primary btn-lg m-2" asp-controller="Books" asp-action="Index">
+             Manage Books
+        </a>
+    </div>
+</div>
