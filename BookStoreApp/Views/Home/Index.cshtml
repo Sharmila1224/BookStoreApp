@@ -8,27 +8,58 @@
     ViewData["Title"] = "Home";
 }
 
-<h2 class="text-center mb-4">Available Books</h2>
+<div class="container py-5">
 
-<div class="row">
-    @if (Model != null && Model.Any())
-    {
-        foreach (var book in Model)
+    <h2 class="text-center mb-5 fw-bold text-dark">Available Books</h2>
+
+    <div class="row g-4">
+        @if (Model != null && Model.Any())
         {
-            <div class="col-md-4 mb-4">
-                <div class="card  border-1">
-                    <div class="card-body p-4">
-                        <h5 class="card-title fw-bold">@book.Title</h5>
-                        <p>
-                            <strong>Author:</strong> @book.Author?.Name <br />
-                            <strong>Price:</strong> ₹@book.Price
-                        </p>
+            foreach (var book in Model)
+            {
+                <div class="col-md-4">
+                    <div class="card h-100 book-card">
+
+                        <div class="card-body d-flex flex-column">
+
+                            <!-- Title -->
+                            <h5 class="fw-bold text-dark mb-3">
+                                @book.Title
+                            </h5>
+
+                            <!-- Author -->
+                            <p class="mb-2 text-muted">
+                                <strong>Author:</strong> @book.Author?.Name
+                            </p>
+
+                            <!-- Price -->
+                            <p class="mb-4">
+                                <span class="badge bg-success px-3 py-2">
+                                    ₹ @book.Price
+                                </span>
+                            </p>
+
+                            <!-- Button -->
+                            <div class="mt-auto">
+                                <a asp-controller="Books" 
+                                   asp-action="Details" 
+                                   asp-route-id="@book.Id"
+                                   class="btn btn-primary w-100 btn-sm">
+                                    View Details
+                                </a>
+                            </div>
+
+                        </div>
+
                     </div>
                 </div>
-            </div>
+            }
         }
-    }
-    else
-    {
-        <p class="text-center">No books available</p>
-    }
+        else
+        {
+            <p class="text-center">No books available</p>
+        }
+    </div>
+
+</div>
+
