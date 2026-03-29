@@ -2,19 +2,33 @@
     ViewData["Title"] = "Home";
 }
 
-<div class="text-center mt-5">
-    <h1 class="display-4"> BookStore Management System</h1>
-    <p class="lead">Manage your Authors and Books easily</p>
+@model IEnumerable<BookStoreApp.Models.Book>
 
-    <hr />
+@{
+    ViewData["Title"] = "Home";
+}
 
-    <div class="mt-4">
-        <a class="btn btn-primary btn-lg m-2" asp-controller="Authors" asp-action="Index">
-            Manage Authors
-        </a>
+<h2 class="text-center mb-4">Available Books</h2>
 
-        <a class="btn btn-primary btn-lg m-2" asp-controller="Books" asp-action="Index">
-             Manage Books
-        </a>
-    </div>
-</div>
+<div class="row">
+    @if (Model != null && Model.Any())
+    {
+        foreach (var book in Model)
+        {
+            <div class="col-md-4 mb-4">
+                <div class="card  border-1">
+                    <div class="card-body p-4">
+                        <h5 class="card-title fw-bold">@book.Title</h5>
+                        <p>
+                            <strong>Author:</strong> @book.Author?.Name <br />
+                            <strong>Price:</strong> ₹@book.Price
+                        </p>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+    else
+    {
+        <p class="text-center">No books available</p>
+    }
